@@ -8,21 +8,18 @@ const theme = createTheme({
     h1: {
       fontSize: '1.2rem',
       '@media (min-width:600px)': {
-        fontSize: '3rem',
+        fontSize: '1.5rem',
       },
     },
   },
   palette: {
     primary: {
-      main: '#290679',
-      dark: '#151515',
+      main: '#0879AA',
+      dark: '#272727',
     },
     secondary: {
-      main: '#630679',
+      main: '#065679',
     },
-    error: {
-      main: '#FF0000',
-    }
   },
 })
 
