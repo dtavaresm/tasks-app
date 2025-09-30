@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from '@mui/material';
-import TasksPage from './components/TasksPage';
+import {Outlet} from 'react-router-dom';
 import Menu from './components/Menu';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         gap: 2
       }}>
         <Menu />
-        <TasksPage />
+        <Outlet />
       </Box>
     </Container>
   )
