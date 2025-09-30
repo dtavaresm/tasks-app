@@ -51,7 +51,7 @@ export default function TasksPage() {
     }
 
     return (
-        <>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: 'stretch' }}>
             <TasksList fetchedData={tasks} currentPage={currentPage} itemsPerPage={itemsPerPage} />
 
             <Stack spacing={2} sx={{ alignItems: 'center', mt: 4, height: 4 }}>
@@ -64,6 +64,6 @@ export default function TasksPage() {
                     />
                 )}
             </Stack>
-        </>
+        </Box>
     )
 }
