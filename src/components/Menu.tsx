@@ -16,17 +16,17 @@ export default function Menu() {
 
     const menuContent = (
         <MenuList>
-            <MenuItem component={NavLink} to="/"
+            <MenuItem component={NavLink} to="/" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1,
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1,
                     '&.active': { bgcolor: 'primary.light' }
                 }}>
                 <HomeIcon sx={{ color: 'primary.main' }} />
                 Home
             </MenuItem>
-            <MenuItem component={NavLink} to="/tasks"
+            <MenuItem component={NavLink} to="/tasks" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1,
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1,
                     '&.active': { bgcolor: 'primary.light' }
                 }}>
                 <TaskIcon sx={{ color: 'primary.main' }} />
@@ -44,20 +44,20 @@ export default function Menu() {
                         edge="start"
                         aria-label="menu"
                         onClick={toggleDrawer(true)}
-                        sx={{ color: 'primary.main', position: 'fixed', top: 0, left: 16, bgcolor: 'background.paper' }}
+                        sx={{ color: 'primary.main', position: 'fixed', t: 4, l: 16, bgcolor: 'background.paper' }}
                     >
                         <MenuIcon />
                     </IconButton>
 
 
                     <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-                        <Box sx={{ width: '60vw' }} role="presentation">
+                        <Box sx={{ width: '70vw' }} role="presentation">
                             {menuContent}
                         </Box>
                     </Drawer>
                 </>
             ) : (
-                <Paper elevation={1} sx={{ borderRadius: 2, height: 'fit-content' }}>
+                <Paper elevation={1} sx={{ borderRadius: 2, height: 'fit-content', mt: 1 }}>
                     {menuContent}
                 </Paper>
             )}
