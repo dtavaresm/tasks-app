@@ -14,7 +14,7 @@ export default function TasksList({ fetchedData, currentPage, itemsPerPage }: Ta
     const currentData = fetchedData.slice(firstIndex, lastIndex);
 
     return (
-        <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column', width: 'stretch'}}>
             {currentData.map((task) => (
                 <TaskCard key={task.id} task={task} />
             ))}
