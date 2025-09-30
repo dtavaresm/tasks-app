@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from '@mui/icons-material/Home';
 import TaskIcon from '@mui/icons-material/Task';
@@ -15,11 +16,19 @@ export default function Menu() {
 
     const menuContent = (
         <MenuList>
-            <MenuItem sx={{ display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1 }}>
+            <MenuItem component={NavLink} to="/"
+                sx={{
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1,
+                    '&.active': { bgcolor: 'primary.light' }
+                }}>
                 <HomeIcon sx={{ color: 'primary.main' }} />
                 Home
             </MenuItem>
-            <MenuItem sx={{ display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1 }}>
+            <MenuItem component={NavLink} to="/tasks"
+                sx={{
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1,
+                    '&.active': { bgcolor: 'primary.light' }
+                }}>
                 <TaskIcon sx={{ color: 'primary.main' }} />
                 Tasks
             </MenuItem>
