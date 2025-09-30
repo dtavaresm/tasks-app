@@ -33,7 +33,7 @@ export default function TasksPage() {
 
     if (isLoading) {
         return (
-            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", maxHeight: "100vh" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
                 <CircularProgress size={80} sx={{ color: 'primary.main' }} />
             </Box>
         );
@@ -41,7 +41,7 @@ export default function TasksPage() {
 
     if (error) {
         return (
-            <Alert severity="error" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <Alert severity="error" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: 'stretch' }}>
                 Something went wrong. Please try again.
                 <IconButton aria-label="delete" sx={{ ml: 2 }}>
                     <RefreshRoundedIcon sx={{ color: 'primary.main' }} onClick={fetchTasks} />
@@ -51,13 +51,16 @@ export default function TasksPage() {
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: 'stretch' }}>
+        <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', width: 'stretch' }}>
             <TasksList fetchedData={tasks} currentPage={currentPage} itemsPerPage={itemsPerPage} />
-
-            <Stack spacing={2} sx={{ alignItems: 'center', mt: 4, height: 4 }}>
+            <Stack spacing={2} sx={{ alignItems: 'center' }}>
                 {paginationCount > 1 && (
                     <Pagination
                         count={paginationCount}
+                        defaultPage={6} 
+                        siblingCount={0} 
+                        boundaryCount={1}
+                        size="small"
                         page={currentPage}
                         onChange={(_, page) => setCurrentPage(page)}
                         color="primary"
