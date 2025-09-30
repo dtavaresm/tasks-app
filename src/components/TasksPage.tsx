@@ -34,7 +34,7 @@ export default function TasksPage() {
     if (isLoading) {
         return (
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", maxHeight: "100vh" }}>
-                <CircularProgress size={80} sx={{ color: 'secondary.main' }} />
+                <CircularProgress size={80} sx={{ color: 'primary.main' }} />
             </Box>
         );
     }
