@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 import App from './App.jsx'
-import HomePage from './components/HomePage.jsx';
-import TasksPage from './components/TasksPage.jsx';
-import { createTheme, ThemeProvider } from '@mui/material'
+import HomePage from './pages/HomePage.tsx';
+import TasksPage from './pages/TasksPage.tsx';
+import { Box, Button, createTheme, ThemeProvider, Typography } from '@mui/material'
 
 const theme = createTheme({
   typography: {
@@ -28,6 +28,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: (
+      <Box>
+        <Typography variant="h6">
+          404 Page not found.
+        </Typography>
+        <Button component={Link} to="/" variant="outlined" sx={{ mt: 2 }}>
+          Go Home
+        </Button>
+      </Box>
+    ),
     children: [
       { index: true, element: <HomePage /> },
       { path: "tasks", element: <TasksPage /> },
