@@ -5,9 +5,6 @@ import Menu from './components/Menu';
 function App() {
   return (
     <Container>
-      <Typography variant="h1" sx={{ fontWeight: '900', textAlign: 'center', color: 'primary.dark', my: 1 }}>
-        New App
-      </Typography>
       <Box sx={{
         display: 'grid',
         gridTemplateColumns: {
@@ -17,7 +14,12 @@ function App() {
         gap: 2
       }}>
         <Menu />
-        <Outlet />
+        <Box sx={{ display: 'flex', flexDirection:'column', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="h1" sx={{ fontWeight: '700', color: 'primary.dark', mb: 3, mt: 1 }}>
+            Task Manager
+          </Typography>
+          <Outlet />
+        </Box>
       </Box>
     </Container>
   )
