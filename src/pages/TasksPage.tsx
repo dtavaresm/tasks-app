@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Box, CircularProgress, IconButton, Pagination, Stack } from "@mui/material";
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import { Task } from "../types";
-import TasksList from "./TasksList";
+import TasksList from "../components/TasksList";
 
 const BASE_URL = "http://localhost:8080/api";
 
