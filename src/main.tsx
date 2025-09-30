@@ -19,9 +19,7 @@ const theme = createTheme({
     primary: {
       main: '#0879AA',
       dark: '#272727',
-    },
-    secondary: {
-      main: '#065679',
+      light: '#e6f5feff',
     },
   },
 })
@@ -29,9 +27,9 @@ const theme = createTheme({
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, 
+    element: <App />,
     children: [
-      { index: true, element: <HomePage /> }, 
+      { index: true, element: <HomePage /> },
       { path: "tasks", element: <TasksPage /> },
     ],
   },
