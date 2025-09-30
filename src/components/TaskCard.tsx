@@ -13,9 +13,10 @@ export default function TaskCard({ task }: TaskCardProps) {
                 <DeleteIcon sx={{ color: 'primary.main' }} />
             </IconButton>
 
-            <Typography sx={{ fontSize: 18 }}>
+            <Typography variant="body1" sx={{ color: 'primary.dark' }}>
                 {task.text}
             </Typography>
+
             <FormGroup>
                 <FormControlLabel control={<Checkbox checked={task.completed} />} label={task.completed ? "Completed" : "Unfinished"} />
             </FormGroup>
