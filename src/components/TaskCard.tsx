@@ -8,7 +8,7 @@ type TaskCardProps = {
 
 export default function TaskCard({ task }: TaskCardProps) {
     return (
-        <Paper elevation={3} sx={{ px: 3, py: 2, borderRadius: 2, width: 'stretch' }}>
+        <Paper elevation={3} sx={{ px: 3, py: 2, borderRadius: 2, width: 'stretch', bgcolor: 'primary.light' }}>
             <IconButton aria-label="delete" sx={{ float: 'right' }}>
                 <DeleteIcon sx={{ color: 'primary.main' }} />
             </IconButton>

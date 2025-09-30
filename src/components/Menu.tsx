@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from '@mui/icons-material/Home';
 import TaskIcon from '@mui/icons-material/Task';
-import { Box, Drawer, IconButton, MenuItem, MenuList, Paper, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Drawer, IconButton, MenuItem, MenuList, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 export default function Menu() {
     const [open, setOpen] = useState(false);
@@ -18,19 +18,20 @@ export default function Menu() {
         <MenuList>
             <MenuItem component={NavLink} to="/" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1,
-                    '&.active': { bgcolor: 'primary.light' }
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
+                    '&.active': { bgcolor: 'primary.main', color: 'primary.light' }
                 }}>
-                <HomeIcon sx={{ color: 'primary.main' }} />
-                Home
+                <HomeIcon />
+                <Typography variant="body1" sx={{ fontWeight: 600 }}>Home</Typography>
+
             </MenuItem>
             <MenuItem component={NavLink} to="/tasks" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1,
-                    '&.active': { bgcolor: 'primary.light' }
+                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
+                    '&.active': { bgcolor: 'primary.main', color: 'primary.light' }
                 }}>
-                <TaskIcon sx={{ color: 'primary.main' }} />
-                Tasks
+                <TaskIcon />
+                <Typography variant="body1" sx={{ fontWeight: 600 }}>Tasks</Typography>
             </MenuItem>
         </MenuList>
     );
@@ -57,7 +58,7 @@ export default function Menu() {
                     </Drawer>
                 </>
             ) : (
-                <Paper elevation={1} sx={{ borderRadius: 2, height: 'fit-content', mt: 1 }}>
+                <Paper elevation={4} sx={{ borderRadius: 2, height: 'fit-content', mt: 1 }}>
                     {menuContent}
                 </Paper>
             )}
