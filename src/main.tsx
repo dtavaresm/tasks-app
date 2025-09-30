@@ -2,8 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
 import App from './App.jsx'
-import HomePage from './pages/HomePage.tsx';
-import TasksPage from './pages/TasksPage.tsx';
+import HomePage from './pages/HomePage';
+import TasksPage from './pages/TasksPage';
 import { Box, Button, createTheme, ThemeProvider, Typography } from '@mui/material'
 
 const theme = createTheme({
