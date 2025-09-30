@@ -44,7 +44,7 @@ export default function Menu() {
                         edge="start"
                         aria-label="menu"
                         onClick={toggleDrawer(true)}
-                        sx={{ color: 'primary.main', position: 'fixed', t: 4, l: 16, bgcolor: 'background.paper' }}
+                        sx={{ color: 'primary.main', position: 'fixed', top: 8, left: 20, bgcolor: 'background.paper' }}
                     >
                         <MenuIcon />
                     </IconButton>

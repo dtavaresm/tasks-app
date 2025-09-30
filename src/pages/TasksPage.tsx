@@ -57,7 +57,6 @@ export default function TasksPage() {
                 {paginationCount > 1 && (
                     <Pagination
                         count={paginationCount}
-                        defaultPage={6} 
                         siblingCount={0} 
                         boundaryCount={1}
                         size="small"
