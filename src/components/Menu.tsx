@@ -18,7 +18,7 @@ export default function Menu() {
         <MenuList>
             <MenuItem component={NavLink} to="/" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
+                    display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
                     '&.active': { bgcolor: 'primary.main', color: 'primary.light' }
                 }}>
                 <HomeIcon />
@@ -27,7 +27,7 @@ export default function Menu() {
             </MenuItem>
             <MenuItem component={NavLink} to="/tasks" onClick={isMobile ? toggleDrawer(false) : undefined}
                 sx={{
-                    display: 'flex', flexFlow: 'row wrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
+                    display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: 1, p: 1, color: 'primary.main',
                     '&.active': { bgcolor: 'primary.main', color: 'primary.light' }
                 }}>
                 <TaskIcon />
