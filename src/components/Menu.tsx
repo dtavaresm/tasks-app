@@ -39,8 +39,8 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.light
     },
-    [theme.breakpoints.down('sm')]: { 
-        paddingLeft: theme.spacing(4), 
+    [theme.breakpoints.down('sm')]: {
+        paddingLeft: theme.spacing(4),
     }
 }));
 
@@ -67,12 +67,14 @@ export default function Menu() {
     const menuContent = (
         <MenuList sx={{ p: 0 }}>
             <NavMenuItem
+                aria-label="home"
                 to="/"
                 onClick={isMobile ? toggleDrawer(false) : undefined}>
                 <HomeIcon />
                 <Typography>Home</Typography>
             </NavMenuItem>
             <NavMenuItem
+                aria-label="tasks"
                 to="/tasks"
                 onClick={isMobile ? toggleDrawer(false) : undefined}>
                 <TaskIcon />

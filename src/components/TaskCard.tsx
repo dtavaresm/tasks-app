@@ -50,8 +50,8 @@ export default function TaskCard({ task }: TaskCardProps) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} disabled>
+                    <Button aria-label="cancel" onClick={handleClose}>Disagree</Button>
+                    <Button aria-label="ok" onClick={handleClose}>
                         Agree
                     </Button>
                 </DialogActions>
