@@ -47,8 +47,8 @@ export default function TasksPage() {
         return (
             <StyledAlert severity="error">
                 Something went wrong. Please try again.
-                <IconButton aria-label="refresh" sx={{ ml: 2 }}>
-                    <RefreshRoundedIcon sx={{ color: 'primary.main' }} onClick={refetch} />
+                <IconButton aria-label="refresh" sx={{ ml: 2 }} onClick={refetch}>
+                    <RefreshRoundedIcon sx={{ color: 'primary.main' }} />
                 </IconButton>
             </StyledAlert>
         )

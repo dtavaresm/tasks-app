@@ -10,6 +10,7 @@ export default function useFetch() {
 
     const fetchTasks = useCallback(async () => {
         setIsLoading(true);
+        setError(null);
         try {
             const response = await fetch(`${BASE_URL}/tasks`);
             if (!response.ok) {
