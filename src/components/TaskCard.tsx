@@ -42,7 +42,7 @@ export default function TaskCard({ task }: TaskCardProps) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Continue to delete this task?"}
+                    {"Are you sure you want to delete this file?"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
