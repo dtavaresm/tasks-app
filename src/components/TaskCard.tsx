@@ -11,7 +11,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     paddingRight: theme.spacing(2),
     borderRadius: theme.spacing(2),
     width: 'stretch',
-    backgroundColor: 'primary.light',
+    backgroundColor: theme.palette.primary.light,
 }));
 
 type TaskCardProps = {
