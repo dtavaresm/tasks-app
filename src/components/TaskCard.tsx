@@ -2,6 +2,17 @@ import { useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, FormGroup, IconButton, Paper, Typography } from '@mui/material';
 import { Task } from "../types";
+import { styled } from "@mui/material/styles";
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    borderRadius: theme.spacing(2),
+    width: 'stretch',
+    backgroundColor: 'primary.light',
+}));
 
 type TaskCardProps = {
     task: Task;
@@ -19,7 +30,7 @@ export default function TaskCard({ task }: TaskCardProps) {
     };
 
     return (
-        <Paper elevation={3} sx={{ px: 3, py: 2, borderRadius: 2, width: 'stretch', bgcolor: 'primary.light' }}>
+        <StyledPaper elevation={3}>
             <IconButton aria-label="delete" sx={{ float: 'right' }} onClick={handleClickOpen}>
                 <DeleteIcon sx={{ color: 'primary.main' }} />
             </IconButton>
@@ -53,6 +64,6 @@ export default function TaskCard({ task }: TaskCardProps) {
             <FormGroup>
                 <FormControlLabel control={<Checkbox checked={task.completed} />} label={task.completed ? "Completed" : "Unfinished"} />
             </FormGroup>
-        </Paper>
+        </StyledPaper>
     );
 } 
