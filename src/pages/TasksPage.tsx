@@ -23,7 +23,7 @@ export default function TasksPage() {
         return (
             <Alert severity="error" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: 'stretch' }}>
                 Something went wrong. Please try again.
-                <IconButton aria-label="delete" sx={{ ml: 2 }}>
+                <IconButton aria-label="refresh" sx={{ ml: 2 }}>
                     <RefreshRoundedIcon sx={{ color: 'primary.main' }} onClick={refetch} />
                 </IconButton>
             </Alert>
