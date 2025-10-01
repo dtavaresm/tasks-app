@@ -1,26 +1,43 @@
 import { Box, Container, Typography } from '@mui/material';
-import {Outlet} from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import { Outlet } from 'react-router-dom';
 import Menu from './components/Menu';
+
+const StyledGridedBox = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gap: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    gridTemplateColumns: '0.2fr 1fr',
+  }
+}));
+
+const StyledFlexedBox = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems: 'center'
+}));
+
+const StyleTitleTypography = styled(Typography)(({ theme }) => ({
+  fontWeight: '700',
+  textAlign: 'center',
+  color: theme.palette.primary.dark,
+  marginBottom: theme.spacing(3),
+  marginTop: theme.spacing(1)
+}));
 
 function App() {
   return (
     <Container>
-      <Box sx={{
-        display: 'grid',
-        gridTemplateColumns: {
-          xs: "1fr",
-          sm: "0.2fr 1fr"
-        },
-        gap: 2
-      }}>
+      <StyleTitleTypography variant="h1">
+        Task Manager
+      </StyleTitleTypography>
+      <StyledGridedBox>
         <Menu />
-        <Box sx={{ display: 'flex', flexDirection:'column', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h1" sx={{ fontWeight: '700', color: 'primary.dark', mb: 3, mt: 1 }}>
-            Task Manager
-          </Typography>
+        <StyledFlexedBox>
           <Outlet />
-        </Box>
-      </Box>
+        </StyledFlexedBox>
+      </StyledGridedBox>
     </Container>
   )
 }
