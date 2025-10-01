@@ -6,10 +6,11 @@ import TaskIcon from '@mui/icons-material/Task';
 import { styled } from "@mui/material/styles";
 import { Box, Drawer, IconButton, MenuItem, MenuItemProps, MenuList, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-const StyledPaper = styled(Paper)(() => ({
+const StyledPaper = styled(Paper)(({ theme }) => ({
     borderRadius: 0,
     height: 'fit-content',
-    padding: 0
+    padding: 0,
+    marginTop: theme.spacing(1),
 }));
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
