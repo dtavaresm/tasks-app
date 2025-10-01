@@ -1,6 +1,22 @@
 import { Task } from "../types";
 import TaskCard from "./TaskCard";
 import { Box } from '@mui/material';
+import { styled } from "@mui/material/styles";
+
+const StyledBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    gap: theme.spacing(2),
+    flexDirection: 'column',
+    width: 'stretch',
+    height: '70dvh',
+    overflowY: 'auto',
+    [theme.breakpoints.up('sm')]: {
+        padding: '1% 2% 2%'
+    },
+    [theme.breakpoints.up('xs')]: {
+        padding: '1% 1% 2%'
+    },
+}));
 
 type TasksListProps = {
     fetchedData: Task[];
@@ -14,22 +30,10 @@ export default function TasksList({ fetchedData, currentPage, itemsPerPage }: Ta
     const currentData = fetchedData.slice(firstIndex, lastIndex);
 
     return (
-        <Box sx={{
-            display: 'flex',
-            gap: 2,
-            flexDirection: 'column',
-            width: 'stretch',
-            height: '70dvh',
-            overflowY: 'auto',
-            p:
-            {
-                xs: '1% 1% 2%',
-                sm: '1% 2% 2%'
-            },
-        }}>
+        <StyledBox>
             {currentData.map((task) => (
                 <TaskCard key={task.id} task={task} />
             ))}
-        </Box>
+        </StyledBox>
     )
 }
