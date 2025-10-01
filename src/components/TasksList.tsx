@@ -7,7 +7,9 @@ const StyledBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     gap: theme.spacing(2),
     flexDirection: 'column',
-    width: 'stretch',
+    width: '100%',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
     height: '70dvh',
     overflowY: 'auto',
     [theme.breakpoints.up('sm')]: {

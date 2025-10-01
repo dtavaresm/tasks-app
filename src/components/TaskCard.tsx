@@ -5,12 +5,10 @@ import { Task } from "../types";
 import { styled } from "@mui/material/styles";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    padding: theme.spacing(3, 2),
     borderRadius: theme.spacing(2),
-    width: 'stretch',
+    width: '100%',
+    boxSizing: 'border-box',
     backgroundColor: theme.palette.primary.light,
 }));
 

@@ -15,7 +15,8 @@ const StyledFlexedBox = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  alignItems: 'center'
+  alignItems: 'center',
+  width: '100%',
 }));
 
 const StyleTitleTypography = styled(Typography)(({ theme }) => ({
