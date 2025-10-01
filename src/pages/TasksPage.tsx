@@ -1,30 +1,30 @@
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
-import { Alert, Box, CircularProgress, IconButton, Pagination, Stack } from "@mui/material";
+import { Alert, Box, CircularProgress, IconButton, Pagination, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import TasksList from "../components/TasksList";
 
 const StyledAlert = styled(Alert)(() => ({
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent: 'flex-start', 
-    width: 'stretch' 
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: 'stretch'
 }));
 
 const StyledLoadingContainerBox = styled(Box)(() => ({
-    display: "flex", 
-    justifyContent: "center", 
-    alignItems: "center", 
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     height: "50vh"
 }));
 
 const StyledTasksContainerBox = styled(Box)(({ theme }) => ({
-    display: 'flex', 
-    gap: theme.spacing(2), 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    justifyContent: 'space-between', 
+    display: 'flex',
+    gap: theme.spacing(2),
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     width: 'stretch'
 }));
 
@@ -46,10 +46,19 @@ export default function TasksPage() {
     if (error) {
         return (
             <StyledAlert severity="error">
-                Something went wrong. Please try again.
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                {error.message ? (
+                    <Typography variant="body2" >
+                        {error.message}. Please try again.
+                    </Typography>
+                ) : (
+                    <Typography variant="body2">
+                        Something went wrong. Please try again.
+                    </Typography>)}
                 <IconButton aria-label="refresh" sx={{ ml: 2 }} onClick={refetch}>
                     <RefreshRoundedIcon sx={{ color: 'primary.main' }} />
                 </IconButton>
+                </Box>
             </StyledAlert>
         )
     }
