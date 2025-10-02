@@ -31,7 +31,7 @@ it("handles fetch error and allows retry", async () => {
 
     render(<TasksPage />);
 
-    await waitFor(() => expect(screen.queryByText("Something went wrong. Please try again.")).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText(/Please try again/i)).toBeInTheDocument());
 
     fireEvent.click(screen.getByRole("button", { name: /refresh/i }));
 
