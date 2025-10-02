@@ -34,7 +34,7 @@ export default function Filter({ searchQuery, onSearchChange, statusFilter, onSt
             >
                 <MenuItem value="all">All</MenuItem>
                 <MenuItem value="completed">Completed</MenuItem>
-                <MenuItem value="uncompleted">Uncompleted</MenuItem>
+                <MenuItem value="uncompleted">Not completed</MenuItem>
             </Select>
         </Box>
 
