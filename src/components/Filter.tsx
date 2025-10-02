@@ -4,8 +4,8 @@ import SearchIcon from "@mui/icons-material/Search";
 type TasksFilterProps = {
     searchQuery: string;
     onSearchChange: (value: string) => void;
-    statusFilter: "all" | "completed" | "unfinished";
-    onStatusChange: (value: "all" | "completed" | "unfinished") => void;
+    statusFilter: "all" | "completed" | "uncompleted";
+    onStatusChange: (value: "all" | "completed" | "uncompleted") => void;
 };
 
 export default function Filter({ searchQuery, onSearchChange, statusFilter, onStatusChange }: TasksFilterProps) {
@@ -30,11 +30,11 @@ export default function Filter({ searchQuery, onSearchChange, statusFilter, onSt
             <Select
                 size="small"
                 value={statusFilter}
-                onChange={(e) => onStatusChange(e.target.value as "all" | "completed" | "unfinished")}
+                onChange={(e) => onStatusChange(e.target.value as "all" | "completed" | "uncompleted")}
             >
                 <MenuItem value="all">All</MenuItem>
                 <MenuItem value="completed">Completed</MenuItem>
-                <MenuItem value="unfinished">Unfinished</MenuItem>
+                <MenuItem value="uncompleted">Uncompleted</MenuItem>
             </Select>
         </Box>
 

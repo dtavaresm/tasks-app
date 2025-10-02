@@ -1,4 +1,5 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import TasksPage from "./TasksPage";
 
 beforeEach(() => {
@@ -15,9 +16,13 @@ it("renders loading state then renders tasks", async () => {
         } as Response)
     );
 
-    render(<TasksPage />);
+    render(
+        <MemoryRouter>
+            <TasksPage />
+        </MemoryRouter>
+    );
 
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    expect(screen.queryByRole("progressbar")).toBeInTheDocument();
     await waitFor(() => expect(screen.queryByText("Task 1")).toBeInTheDocument());
     expect(screen.getByRole("list")).toBeInTheDocument();
 });
@@ -29,7 +34,11 @@ it("handles fetch error and allows retry", async () => {
         } as Response)
     );
 
-    render(<TasksPage />);
+    render(
+        <MemoryRouter>
+            <TasksPage />
+        </MemoryRouter>
+    );
 
     await waitFor(() => expect(screen.queryByText(/Please try again/i)).toBeInTheDocument());
 

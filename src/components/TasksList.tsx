@@ -35,7 +35,7 @@ export default function TasksList({ fetchedData, currentPage, itemsPerPage, onDe
     return (
         <StyledBox>
             {currentData.length === 0 ?
-                (<Typography variant="body1" sx={{ fontWeight: 600, color: 'primary.main'}}>
+                (<Typography variant="body1" sx={{ fontWeight: 600, color: 'primary.main' }}>
                     No tasks found.
                 </Typography>) :
                 (currentData.map((task) => (

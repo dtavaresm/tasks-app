@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { Alert, Box, CircularProgress, IconButton, Pagination, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -34,30 +35,36 @@ const StyledTasksContainerBox = styled(Box)(({ theme }) => ({
 
 export default function TasksPage() {
     const { error, isLoading, tasks: fetchedTasks, refetch } = useFetch();
+    const location = useLocation();
     const [tasks, setTasks] = useState<Task[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [statusFilter, setStatusFilter] = useState<"all" | "completed" | "unfinished">("all");
+    const [statusFilter, setStatusFilter] = useState<"all" | "completed" | "uncompleted">("all");
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        refetch();
+    }, [location.key]);
 
     const filteredList = tasks.filter((task) => {
         const matchesSearch = task.text.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesStatus =
             statusFilter === "all" ||
             (statusFilter === "completed" && task.completed) ||
-            (statusFilter === "unfinished" && !task.completed);
+            (statusFilter === "uncompleted" && !task.completed);
 
         return matchesSearch && matchesStatus;
     })
 
     const itemsPerPage = 5;
-    const paginationCount = Math.max(1, Math.ceil(tasks.length / itemsPerPage));
-    const lastIndex = currentPage * itemsPerPage;
-    const firstIndex = lastIndex - itemsPerPage;
-    const currentData = filteredList.slice(firstIndex, lastIndex);
+    const paginationCount = Math.max(1, Math.ceil(filteredList.length / itemsPerPage));
 
     useEffect(() => {
         setTasks(fetchedTasks);
     }, [fetchedTasks]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, statusFilter]);
 
     const handleDeleteTask = (id: number) => {
         setTasks((prev) => {
@@ -107,24 +114,27 @@ export default function TasksPage() {
                 onStatusChange={setStatusFilter}
             />
             <TasksList
-                fetchedData={currentData}
+                fetchedData={filteredList}
                 currentPage={currentPage}
                 itemsPerPage={itemsPerPage}
                 onDelete={handleDeleteTask}
             />
-            <Stack spacing={2} sx={{ alignItems: 'center' }}>
-                {paginationCount > 1 && (
-                    <Pagination
-                        count={paginationCount}
-                        siblingCount={0}
-                        boundaryCount={1}
-                        size="small"
-                        page={currentPage}
-                        onChange={(_, page) => setCurrentPage(page)}
-                        color="primary"
-                    />
-                )}
-            </Stack>
+            {filteredList.length > 0 && (
+                <Stack spacing={2} sx={{ alignItems: 'center' }}>
+                    {paginationCount > 1 && (
+                        <Pagination
+                            count={paginationCount}
+                            siblingCount={0}
+                            boundaryCount={1}
+                            size="small"
+                            page={currentPage}
+                            onChange={(_, page) => setCurrentPage(page)}
+                            color="primary"
+                        />
+                    )}
+                </Stack>
+            )}
+
         </StyledTasksContainerBox>
     )
 }

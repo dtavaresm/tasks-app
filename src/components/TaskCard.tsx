@@ -63,7 +63,7 @@ export default function TaskCard({ task, onDelete }: TaskCardProps) {
             </Typography>
 
             <FormGroup>
-                <FormControlLabel control={<Checkbox checked={task.completed} />} label={task.completed ? "Completed" : "Unfinished"} />
+                <FormControlLabel control={<Checkbox checked={task.completed} />} label={task.completed ? "Completed" : "uncompleted"} />
             </FormGroup>
         </StyledPaper>
     );
