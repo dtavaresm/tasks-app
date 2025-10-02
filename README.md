@@ -11,7 +11,7 @@ This front-end app depends on a running Task API. The API is provided separately
 
 **Repository:** [Tasks API](https://github.com/MarceloFonseca/tasks-api)
 
-Follow the instructions in that repository to install dependencies and start the API. By default, it runs on port 3008 and serves task data for this application.
+Follow the instructions in that repository to install dependencies and start the API. It runs on port 3008 and serves task data for this application.
 
 ### 1. Clone the repository and navigate into the project directory
 ```bash
