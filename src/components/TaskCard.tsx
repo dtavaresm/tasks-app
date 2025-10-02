@@ -14,18 +14,19 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 
 type TaskCardProps = {
     task: Task;
+    onDelete: (id: number) => void;
 };
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, onDelete }: TaskCardProps) {
     const [open, setOpen] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const handleClickOpen = () => { setOpen(true); };
+    const handleClose = () => { setOpen(false); };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const handleConfirmDelete = () => {
+        onDelete(task.id);
+        handleClose();
+    }
 
     return (
         <StyledPaper elevation={3}>
@@ -40,17 +41,19 @@ export default function TaskCard({ task }: TaskCardProps) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Are you sure you want to delete this file?"}
+                    {"Are you sure you want to delete this task?"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        This will permanently delete the task.
+                        This will delete the task only on client side.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button aria-label="cancel" onClick={handleClose}>Disagree</Button>
-                    <Button aria-label="ok" onClick={handleClose}>
-                        Agree
+                    <Button aria-label="cancel" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button aria-label="ok" onClick={handleConfirmDelete} autoFocus>
+                        OK
                     </Button>
                 </DialogActions>
             </Dialog>

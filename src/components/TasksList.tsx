@@ -24,9 +24,10 @@ type TasksListProps = {
     fetchedData: Task[];
     currentPage: number;
     itemsPerPage: number;
+    onDelete: (id: number) => void;
 };
 
-export default function TasksList({ fetchedData, currentPage, itemsPerPage }: TasksListProps) {
+export default function TasksList({ fetchedData, currentPage, itemsPerPage, onDelete }: TasksListProps) {
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const currentData = fetchedData.slice(firstIndex, lastIndex);
@@ -34,7 +35,7 @@ export default function TasksList({ fetchedData, currentPage, itemsPerPage }: Ta
     return (
         <StyledBox>
             {currentData.map((task) => (
-                <TaskCard key={task.id} task={task} />
+                <TaskCard key={task.id} task={task} onDelete={onDelete} />
             ))}
         </StyledBox>
     )

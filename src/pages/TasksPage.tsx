@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { Alert, Box, CircularProgress, IconButton, Pagination, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import TasksList from "../components/TasksList";
+import { Task } from "../types";
 
 const StyledAlert = styled(Alert)(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    width: 'stretch'
+    width: '100%'
 }));
 
 const StyledLoadingContainerBox = styled(Box)(() => ({
@@ -25,15 +26,24 @@ const StyledTasksContainerBox = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 'stretch'
+    width: '100%'
 }));
 
 export default function TasksPage() {
-    const { error, isLoading, tasks, refetch } = useFetch();
+    const { error, isLoading, tasks: fetchedTasks, refetch } = useFetch();
+    const [tasks, setTasks] = useState<Task[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
     const itemsPerPage = 5;
     const paginationCount = Math.ceil(tasks.length / itemsPerPage);
+
+    useEffect(() => {
+        setTasks(fetchedTasks);
+    }, [fetchedTasks]);
+
+    const handleDeleteTask = (id: number) => {
+        setTasks((prev) => prev.filter((t) => t.id !== id));
+    };
 
     if (isLoading) {
         return (
@@ -47,17 +57,17 @@ export default function TasksPage() {
         return (
             <StyledAlert severity="error">
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                {error.message ? (
-                    <Typography variant="body2" >
-                        {error.message}. Please try again.
-                    </Typography>
-                ) : (
-                    <Typography variant="body2">
-                        Something went wrong. Please try again.
-                    </Typography>)}
-                <IconButton aria-label="refresh" sx={{ ml: 2 }} onClick={refetch}>
-                    <RefreshRoundedIcon sx={{ color: 'primary.main' }} />
-                </IconButton>
+                    {error.message ? (
+                        <Typography variant="body2" >
+                            {error.message}. Please try again.
+                        </Typography>
+                    ) : (
+                        <Typography variant="body2">
+                            Something went wrong. Please try again.
+                        </Typography>)}
+                    <IconButton aria-label="refresh" sx={{ ml: 2 }} onClick={refetch}>
+                        <RefreshRoundedIcon sx={{ color: 'primary.main' }} />
+                    </IconButton>
                 </Box>
             </StyledAlert>
         )
@@ -65,7 +75,11 @@ export default function TasksPage() {
 
     return (
         <StyledTasksContainerBox>
-            <TasksList fetchedData={tasks} currentPage={currentPage} itemsPerPage={itemsPerPage} />
+            <TasksList 
+                fetchedData={tasks} 
+                currentPage={currentPage} 
+                itemsPerPage={itemsPerPage} 
+                onDelete={handleDeleteTask} />
             <Stack spacing={2} sx={{ alignItems: 'center' }}>
                 {paginationCount > 1 && (
                     <Pagination
