@@ -1,8 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Task } from "../types";
 
-const BASE_URL = "http://localhost:3008/api";
-
 export default function useFetch() {
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +10,7 @@ export default function useFetch() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${BASE_URL}/tasks`);
+            const response = await fetch('/api/tasks');
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
