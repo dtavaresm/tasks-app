@@ -35,14 +35,21 @@ export default function TasksPage() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const itemsPerPage = 5;
-    const paginationCount = Math.ceil(tasks.length / itemsPerPage);
+    const paginationCount = Math.max(1, Math.ceil(tasks.length / itemsPerPage));
 
     useEffect(() => {
         setTasks(fetchedTasks);
     }, [fetchedTasks]);
 
     const handleDeleteTask = (id: number) => {
-        setTasks((prev) => prev.filter((t) => t.id !== id));
+        setTasks((prev) => {
+            const updatedTasks = prev.filter((t) => t.id !== id);
+            const newPaginationCount = Math.max(1, Math.ceil(updatedTasks.length / itemsPerPage));
+            if (currentPage > newPaginationCount) {
+                setCurrentPage(newPaginationCount);
+            }
+            return updatedTasks;
+        });
     };
 
     if (isLoading) {
