@@ -5,12 +5,15 @@ import { styled } from "@mui/material/styles";
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import TasksList from "../components/TasksList";
 import { Task } from "../types";
+import Filter from "../components/Filter";
 
 const StyledAlert = styled(Alert)(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    width: '100%'
+    width: '100%',
+    maxWidth: '100%',
+    boxSizing: 'border-box'
 }));
 
 const StyledLoadingContainerBox = styled(Box)(() => ({
@@ -32,10 +35,25 @@ const StyledTasksContainerBox = styled(Box)(({ theme }) => ({
 export default function TasksPage() {
     const { error, isLoading, tasks: fetchedTasks, refetch } = useFetch();
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [statusFilter, setStatusFilter] = useState<"all" | "completed" | "unfinished">("all");
     const [currentPage, setCurrentPage] = useState(1);
+
+    const filteredList = tasks.filter((task) => {
+        const matchesSearch = task.text.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesStatus =
+            statusFilter === "all" ||
+            (statusFilter === "completed" && task.completed) ||
+            (statusFilter === "unfinished" && !task.completed);
+
+        return matchesSearch && matchesStatus;
+    })
 
     const itemsPerPage = 5;
     const paginationCount = Math.max(1, Math.ceil(tasks.length / itemsPerPage));
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+    const currentData = filteredList.slice(firstIndex, lastIndex);
 
     useEffect(() => {
         setTasks(fetchedTasks);
@@ -82,11 +100,18 @@ export default function TasksPage() {
 
     return (
         <StyledTasksContainerBox>
-            <TasksList 
-                fetchedData={tasks} 
-                currentPage={currentPage} 
-                itemsPerPage={itemsPerPage} 
-                onDelete={handleDeleteTask} />
+            <Filter
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                statusFilter={statusFilter}
+                onStatusChange={setStatusFilter}
+            />
+            <TasksList
+                fetchedData={currentData}
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                onDelete={handleDeleteTask}
+            />
             <Stack spacing={2} sx={{ alignItems: 'center' }}>
                 {paginationCount > 1 && (
                     <Pagination

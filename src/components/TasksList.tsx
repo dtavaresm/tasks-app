@@ -1,6 +1,6 @@
 import { Task } from "../types";
 import TaskCard from "./TaskCard";
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from "@mui/material/styles";
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -34,9 +34,13 @@ export default function TasksList({ fetchedData, currentPage, itemsPerPage, onDe
 
     return (
         <StyledBox>
-            {currentData.map((task) => (
-                <TaskCard key={task.id} task={task} onDelete={onDelete} />
-            ))}
+            {currentData.length === 0 ?
+                (<Typography variant="body1" sx={{ fontWeight: 600, color: 'primary.main'}}>
+                    No tasks found.
+                </Typography>) :
+                (currentData.map((task) => (
+                    <TaskCard key={task.id} task={task} onDelete={onDelete} />
+                )))}
         </StyledBox>
     )
 }
