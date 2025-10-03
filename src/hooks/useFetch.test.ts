@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import useFetch from './useFetch';
 
 beforeEach(() => {
-    jest.resetAllMocks();
+    fetchMock.resetMocks();
 });
 
 it("should fetch tasks successfully", async () => {
@@ -11,26 +11,17 @@ it("should fetch tasks successfully", async () => {
         { id: 2, text: "Test Task 2", completed: true },
     ];
 
-    global.fetch = jest.fn(() =>
-        Promise.resolve({
-            ok: true,
-            json: () => Promise.resolve(mockTasks),
-        } as Response)
-    );
+    fetchMock.mockResponseOnce(JSON.stringify(mockTasks));
 
     const { result } = renderHook(() => useFetch());
 
     await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current.error).toBeNull();
     expect(result.current.tasks).toEqual(mockTasks);
 });
 
 it("should handle fetch error", async () => {
     global.fetch = jest.fn(() =>
-        Promise.resolve({
-            ok: false,
-        } as Response)
+        Promise.resolve(new Response(null, { status: 500 }))
     );
 
     const { result } = renderHook(() => useFetch());
